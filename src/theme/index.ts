@@ -13,5 +13,11 @@ export const theme = {
     cardPrimary: '#FFFFFF',
     cardSecondary: '#CE2929',
   },
+  fonts: {
+    Inter_Regular: 'Inter-Regular',
+    OpenSans_Regular: 'OpenSans-Regular',
+    OpenSans_SemiBold: 'OpenSans-SemiBold',
+    OpenSans_Bold: 'OpenSans-Bold',
+  },
   responsiveValue: RFValue(1, phoneScreenHeight),
 };
