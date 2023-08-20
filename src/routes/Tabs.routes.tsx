@@ -37,7 +37,13 @@ export function TabsRoutes() {
         name="HomeStackRoutes"
         component={HomeStackRoutes}
         options={{
-          tabBarIcon: () => <Home height={iconSize} width={iconSize} />,
+          tabBarIcon: () => (
+            <Home
+              height={iconSize}
+              width={iconSize}
+              style={{ left: theme.responsiveValue * 42 }}
+            />
+          ),
         }}
       />
 
@@ -45,7 +51,13 @@ export function TabsRoutes() {
         name="ClientsStackRoutes"
         component={ClientsStackRoutes}
         options={{
-          tabBarIcon: () => <User height={iconSize} width={iconSize} />,
+          tabBarIcon: () => (
+            <User
+              height={iconSize}
+              width={iconSize}
+              style={{ right: theme.responsiveValue * 42 }}
+            />
+          ),
         }}
       />
     </Navigator>
