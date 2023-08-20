@@ -1,10 +1,17 @@
 import styled, { css } from 'styled-components/native';
+import { EdgeInsets } from 'react-native-safe-area-context';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { BorderlessButton } from '@components/BorderlessButton';
 
-export const Container = styled.View`
+type LayoutProps = {
+  insets: EdgeInsets;
+};
+
+export const Container = styled.View<LayoutProps>`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top: ${({ insets }) => insets.top}px;
 `;
 
 export const Title = styled.Text`
@@ -12,7 +19,7 @@ export const Title = styled.Text`
     text-align: center;
     color: ${theme.colors.primary};
     font-family: ${theme.fonts.OpenSans_Bold};
-    font-size: ${theme.responsiveValue * 18}px;
+    font-size: ${RFValue(18)}px;
   `};
 `;
 

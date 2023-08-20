@@ -2,6 +2,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from 'styled-components/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 import Home from '@assets/images/Home.svg';
 import User from '@assets/images/User.svg';
@@ -14,7 +15,7 @@ const { Navigator, Screen } = createBottomTabNavigator();
 export function TabsRoutes() {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
-  const iconSize = theme.responsiveValue * 24;
+  const iconSize = RFValue(24);
 
   return (
     <Navigator
@@ -26,9 +27,10 @@ export function TabsRoutes() {
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: theme.colors.primary,
         tabBarStyle: {
+          borderTopWidth: 0,
           backgroundColor: theme.colors.cardPrimary,
-          height: theme.responsiveValue * 48 + insets.bottom,
-          paddingTop: theme.responsiveValue * 16,
+          height: RFValue(48) + insets.bottom,
+          paddingTop: RFValue(10),
         },
       }}
       initialRouteName="HomeStackRoutes"
@@ -41,7 +43,7 @@ export function TabsRoutes() {
             <Home
               height={iconSize}
               width={iconSize}
-              style={{ left: theme.responsiveValue * 42 }}
+              style={{ left: RFValue(30) }}
             />
           ),
         }}
@@ -55,7 +57,7 @@ export function TabsRoutes() {
             <User
               height={iconSize}
               width={iconSize}
-              style={{ right: theme.responsiveValue * 42 }}
+              style={{ right: RFValue(30) }}
             />
           ),
         }}

@@ -1,4 +1,14 @@
-export type DebtDTO = {
+export type Debt = {
+  id: number;
+  valor: number;
+  dataPagamento: string | null;
+  descricao: string;
+  idControle: number;
+  version: number;
+  retorno: [];
+};
+
+export type DebtDTO = Debt & {
   cliente: {
     id: number;
     nome: string;
@@ -8,11 +18,4 @@ export type DebtDTO = {
     version: number;
     retorno: [];
   };
-  id: number;
-  valor: number;
-  dataPagamento: string | null;
-  descricao: string;
-  idControle: number;
-  version: number;
-  retorno: [];
 };

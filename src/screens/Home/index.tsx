@@ -1,7 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
-import { Alert, RefreshControl } from 'react-native';
+import { RefreshControl } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { AxiosResponse } from 'axios';
+import Toast from 'react-native-toast-message';
 
 import { api } from '@services/api';
 import { AllDebtsDTO } from '@dtos/allDebts';
@@ -56,7 +57,11 @@ export function Home() {
 
       await handleFetchDebts();
     } catch (error) {
-      return Alert.alert('Home', 'Não foi possível carregar as dívidas');
+      Toast.show({
+        type: 'error',
+        text1: 'Resumo de dívidas',
+        text2: 'Não foi possível carregar o resumo de dívidas',
+      });
     } finally {
       setIsLoading(false);
     }
@@ -70,6 +75,7 @@ export function Home() {
 
   return (
     <S.Container
+      showsVerticalScrollIndicator={false}
       refreshControl={
         <RefreshControl
           refreshing={isFetching}
@@ -77,29 +83,28 @@ export function Home() {
         />
       }
     >
-      <S.Content edges={['right', 'top', 'left']}>
-        <Header title="Resumo de dívidas" />
-        <S.ListWrapper>
-          <DebtResumeItem
-            title="Dívidas em aberto"
-            quantity={outstandingDebts.length}
-            totalValue={totalOutstandingDebt}
-            isLoading={isLoading}
-          />
-          <DebtResumeItem
-            title="Dívidas pagas"
-            quantity={paidDebts.length}
-            totalValue={totalPaidDebt}
-            isLoading={isLoading}
-          />
-          <DebtResumeItem
-            title="Dívidas cadastradas"
-            quantity={debts.length}
-            totalValue={totalDebt}
-            isLoading={isLoading}
-          />
-        </S.ListWrapper>
-      </S.Content>
+      <Header title="Resumo de dívidas" />
+      <Toast topOffset={50} />
+      <S.ListWrapper>
+        <DebtResumeItem
+          title="Dívidas em aberto"
+          quantity={outstandingDebts.length}
+          totalValue={totalOutstandingDebt}
+          isLoading={isLoading}
+        />
+        <DebtResumeItem
+          title="Dívidas pagas"
+          quantity={paidDebts.length}
+          totalValue={totalPaidDebt}
+          isLoading={isLoading}
+        />
+        <DebtResumeItem
+          title="Dívidas cadastradas"
+          quantity={debts.length}
+          totalValue={totalDebt}
+          isLoading={isLoading}
+        />
+      </S.ListWrapper>
     </S.Container>
   );
 }

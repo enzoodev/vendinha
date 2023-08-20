@@ -1,6 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useTheme } from 'styled-components/native';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import ArrowLeft from '@assets/images/Arrowleft.svg';
 
@@ -12,8 +13,7 @@ type Props = {
 };
 
 export const Header = memo(({ title, hasBackButton = false }: Props) => {
-  const theme = useTheme();
-  const size = theme.responsiveValue * 26;
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
   const handleGoBack = useCallback(() => {
@@ -21,10 +21,10 @@ export const Header = memo(({ title, hasBackButton = false }: Props) => {
   }, [navigation]);
 
   return (
-    <S.Container>
+    <S.Container insets={insets}>
       {hasBackButton && (
         <S.GoBackButton onPress={handleGoBack}>
-          <ArrowLeft height={size} width={size} />
+          <ArrowLeft height={RFValue(26)} width={RFValue(26)} />
         </S.GoBackButton>
       )}
       <S.Title>{title}</S.Title>

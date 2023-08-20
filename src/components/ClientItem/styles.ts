@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { Skeleton } from '@components/Skeleton';
+import { BorderlessButton } from '@components/BorderlessButton';
 
-export const Container = styled.View`
+export const Container = styled(BorderlessButton)`
   ${({ theme }) => css`
-    padding: ${RFValue(16)}px;
-    gap: ${RFValue(14)}px;
+    padding: ${RFValue(10)}px ${RFValue(16)}px;
+    gap: ${RFValue(10)}px;
     border-radius: ${RFValue(8)}px;
     background: ${theme.colors.cardPrimary};
     shadow-opacity: 0.8;
@@ -25,7 +25,7 @@ export const Title = styled.Text`
 export const InlineWrapper = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  gap: ${RFValue(8)}px;
 `;
 
 export const InlineTitle = styled.Text`
@@ -44,12 +44,27 @@ export const InlineSubtitle = styled.Text`
   `};
 `;
 
-export const LoadTitle = styled(Skeleton)`
-  height: ${RFValue(15)}px;
-  width: ${RFValue(130)}px;
+export const Footer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: ${RFValue(4)}px 0;
+  border-top-width: ${RFValue(1)}px;
+  border-color: ${({ theme }) => theme.colors.cardBorderInner};
 `;
 
-export const LoadSubtitle = styled(Skeleton)`
-  height: ${RFValue(14)}px;
-  width: 90%;
+export const DebtText = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.colors.secondary};
+    font-family: ${theme.fonts.OpenSans_Bold};
+    font-size: ${RFValue(16)}px;
+  `};
+`;
+
+export const DebtValue = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.colors.textSecondary};
+    font-family: ${theme.fonts.OpenSans_Bold};
+    font-size: ${RFValue(16)}px;
+  `};
 `;
