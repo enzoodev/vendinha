@@ -10,6 +10,7 @@ export type DebtDTO = {
   };
   id: number;
   valor: number;
+  dataPagamento: string | null;
   descricao: string;
   idControle: number;
   version: number;

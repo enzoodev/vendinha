@@ -12,6 +12,7 @@ export const theme = {
     background: '#FAFAFA',
     cardPrimary: '#FFFFFF',
     cardSecondary: '#CE2929',
+    skeleton: '#EAEAEA',
   },
   fonts: {
     Inter_Regular: 'Inter-Regular',
