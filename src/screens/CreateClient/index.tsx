@@ -96,7 +96,7 @@ export function CreateClient() {
                     mask="999.999.999-99"
                     value={value}
                     onChangeText={onChange}
-                    placeholder="CPF do cliente"
+                    placeholder="999.999.999-99"
                     formError={errors.cpf?.message}
                     keyboardType="number-pad"
                   />
@@ -112,7 +112,7 @@ export function CreateClient() {
                     mask="99/99/9999"
                     value={value}
                     onChangeText={onChange}
-                    placeholder="Data de nascimento do cliente"
+                    placeholder="DD/MM/AAAA"
                     formError={errors.dataNascimento?.message}
                     keyboardType="number-pad"
                   />
