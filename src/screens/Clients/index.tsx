@@ -6,9 +6,9 @@ import {
   NativeSyntheticEvent,
   RefreshControl,
 } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 import Toast from 'react-native-toast-message';
-
 import {
   Extrapolate,
   interpolate,
@@ -16,7 +16,7 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { RFValue } from 'react-native-responsive-fontsize';
+
 import { api } from '@services/api';
 import { DebtDTO } from '@dtos/debt';
 import { Client, ClientDTO } from '@dtos/client';
@@ -34,6 +34,7 @@ export function Clients() {
   const [searchText, setSearchText] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
+  const navigation = useNavigation();
 
   const flatlistData = useMemo(() => {
     if (!clients || clients.length === 0) return [];
@@ -82,6 +83,10 @@ export function Clients() {
     },
     [drag],
   );
+
+  const handleCreateClient = useCallback(() => {
+    navigation.navigate('CreateClient');
+  }, [navigation]);
 
   const handleFetchClients = useCallback(async () => {
     const [clientsResponse, debtsResponse] = await Promise.all([
@@ -180,7 +185,7 @@ export function Clients() {
         }
       />
       <S.AnimatedContainer style={buttonAnimatedStyle}>
-        <ButtonAdd onPress={() => {}} />
+        <ButtonAdd onPress={handleCreateClient} />
       </S.AnimatedContainer>
     </S.Container>
   );

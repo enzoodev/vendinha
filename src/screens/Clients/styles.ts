@@ -29,6 +29,5 @@ export const ListEmptyTitle = styled.Text`
     font-family: ${theme.fonts.OpenSans_Regular};
     color: ${theme.colors.textSecondary};
     font-size: ${RFValue(16)}px;
-    /* margin-right: ${RFValue(16)}px; */
   `};
 `;
