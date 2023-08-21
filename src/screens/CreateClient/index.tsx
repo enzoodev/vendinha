@@ -51,6 +51,7 @@ export function CreateClient() {
           text1: 'Clientes',
           text2: 'Cliente criado com sucesso!',
           onHide: handleGoBack,
+          visibilityTime: 2000,
         });
 
         reset();
@@ -71,7 +72,7 @@ export function CreateClient() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <S.Container>
         <Header title="Clientes" hasBackButton />
-        <Toast visibilityTime={2000} />
+        <Toast />
         <S.Form>
           <Controller
             control={control}
