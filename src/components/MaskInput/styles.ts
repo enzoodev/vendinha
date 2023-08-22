@@ -4,14 +4,16 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Wrapper = styled.View``;
 
-export const Input = styled(MaskedTextInput)`
+export const Input = styled(MaskedTextInput)<{ textValue: string }>`
   padding: ${RFValue(10)}px ${RFValue(8)}px;
   border-radius: ${RFValue(8)}px;
   font-size: ${RFValue(14)}px;
-  ${({ theme }) => css`
+  ${({ theme, textValue }) => css`
     border: ${RFValue(1)}px solid ${theme.colors.cardBorderInner};
     font-family: ${theme.fonts.OpenSans_Regular};
-    color: ${theme.colors.textPrimary};
+    color: ${!!textValue && textValue.trim().length > 0 && textValue !== '0'
+      ? theme.colors.textPrimary
+      : theme.colors.placeholder};
   `};
 `;
 

@@ -12,7 +12,8 @@ export const theme = {
     cardSecondary: '#CE2929',
     skeleton: '#EAEAEA',
     search: '#A4A6AC',
-    placeholder: '#D8D8D8',
+    placeholder: '#C8C8C8',
+    dropdownText: '#75767C',
   },
   fonts: {
     Inter_Regular: 'Inter-Regular',

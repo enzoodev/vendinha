@@ -5,6 +5,7 @@ export declare global {
       Clients: undefined;
       CreateClient: undefined;
       ClientDetails: { id: number };
+      CreateDebt: { clientId: number };
       AllDebts: { clientId: number };
     }
   }

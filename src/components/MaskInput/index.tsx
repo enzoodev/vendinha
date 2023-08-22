@@ -17,6 +17,7 @@ export const MaskInput = memo(
     return (
       <S.Wrapper>
         <S.Input
+          textValue={value}
           value={value}
           placeholder={placeholder}
           textAlignVertical="center"

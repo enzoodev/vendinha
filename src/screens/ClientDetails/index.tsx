@@ -62,6 +62,9 @@ export function ClientDetails() {
   const [isModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
 
+  const isShowButtonAdd =
+    client.debts.length > 0 ? client.debts[0].dataPagamento : false;
+
   const toggleModal = useCallback(() => {
     setModalVisible(prevState => !prevState);
   }, []);
@@ -151,8 +154,8 @@ export function ClientDetails() {
   }, [navigation]);
 
   const handleCreateDebt = useCallback(() => {
-    // navigation.navigate('CreateDebt');
-  }, [navigation]);
+    navigation.navigate('CreateDebt', { clientId: id });
+  }, [id, navigation]);
 
   const handleOpenAllDebts = useCallback(() => {
     navigation.navigate('AllDebts', { clientId: id });
@@ -294,9 +297,11 @@ export function ClientDetails() {
           <S.ListEmptyTitle>Cliente não possui dívidas.</S.ListEmptyTitle>
         }
       />
-      <S.AnimatedContainer style={buttonAnimatedStyle}>
-        <ButtonAdd onPress={handleCreateDebt} />
-      </S.AnimatedContainer>
+      {isShowButtonAdd && (
+        <S.AnimatedContainer style={buttonAnimatedStyle}>
+          <ButtonAdd onPress={handleCreateDebt} />
+        </S.AnimatedContainer>
+      )}
       <ReactNativeModal
         isVisible={isModalVisible}
         onBackdropPress={toggleModal}
