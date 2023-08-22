@@ -4,7 +4,6 @@ import Animated from 'react-native-reanimated';
 
 export const Container = styled.View`
   flex: 1;
-  padding: ${RFValue(16)}px;
   background-color: ${({ theme }) => theme.colors.cardPrimary};
 `;
 

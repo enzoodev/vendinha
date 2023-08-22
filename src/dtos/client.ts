@@ -5,9 +5,11 @@ export type Client = {
   nome: string;
   email: string;
   cpf: string;
+  dataNascimento: string;
   idControle: number;
   version: number;
   retorno: [];
+  totalDebt: number;
   debts: Debt[];
 };
 
@@ -16,6 +18,7 @@ export type ClientDTO = {
   nome: string;
   email: string;
   cpf: string;
+  dataNascimento: string;
   idControle: number;
   version: number;
   retorno: [];

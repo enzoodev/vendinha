@@ -17,6 +17,10 @@ export const InlineWrapper = styled.View`
   gap: ${RFValue(16)}px;
 `;
 
+export const LabelWrapper = styled.View`
+  margin-top: ${RFValue(19)}px;
+`;
+
 export const EmptyDebtWrapper = styled.View`
   flex: 1;
   align-items: center;

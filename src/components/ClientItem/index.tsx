@@ -1,22 +1,16 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import { TouchableOpacityProps } from 'react-native';
 import { formatToBRL } from 'brazilian-values';
 
-import { ClientDTO } from '@dtos/client';
+import { Client } from '@dtos/client';
 
 import * as S from './styles';
 
 type Props = TouchableOpacityProps & {
-  item: ClientDTO;
+  item: Client;
 };
 
 export const ClientItem = memo(({ item, ...rest }: Props) => {
-  const debt = useMemo(() => {
-    return item.debts.reduce((prev, { valor }) => {
-      return prev + valor;
-    }, 0);
-  }, [item.debts]);
-
   return (
     <S.Container {...rest}>
       <S.Title>{item.nome}</S.Title>
@@ -30,7 +24,7 @@ export const ClientItem = memo(({ item, ...rest }: Props) => {
       </S.InlineWrapper>
       <S.Footer>
         <S.DebtText>Valor da dívida:</S.DebtText>
-        <S.DebtValue>{formatToBRL(debt)}</S.DebtValue>
+        <S.DebtValue>{formatToBRL(item.totalDebt)}</S.DebtValue>
       </S.Footer>
     </S.Container>
   );

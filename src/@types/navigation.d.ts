@@ -4,6 +4,7 @@ export declare global {
       Home: undefined;
       Clients: undefined;
       CreateClient: undefined;
+      ClientDetails: { id: number };
     }
   }
 }

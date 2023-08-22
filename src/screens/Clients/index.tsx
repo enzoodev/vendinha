@@ -58,19 +58,35 @@ export function Clients() {
     };
   });
 
+  const handleCreateClient = useCallback(() => {
+    navigation.navigate('CreateClient');
+  }, [navigation]);
+
+  const handleOpenClientDetails = useCallback(
+    (id: number) => {
+      navigation.navigate('ClientDetails', { id });
+    },
+    [navigation],
+  );
+
   const loadingData = Array.from({ length: 8 }).map((_, index) => ({
     id: index,
   }));
   const data = isLoading ? loadingData : flatlistData;
 
-  const keyExtractor = (item: ClientDTO) => String(item.id);
+  const keyExtractor = (item: Client) => String(item.id);
 
-  const renderItem: ListRenderItem<ClientDTO> = ({ item }) => {
+  const renderItem: ListRenderItem<Client> = ({ item }) => {
     if (isLoading) {
       return <ClientSkeletonItem />;
     }
 
-    return <ClientItem item={item} />;
+    return (
+      <ClientItem
+        item={item}
+        onPress={() => handleOpenClientDetails(item.id)}
+      />
+    );
   };
 
   const handleScroll = useCallback(
@@ -84,10 +100,6 @@ export function Clients() {
     [drag],
   );
 
-  const handleCreateClient = useCallback(() => {
-    navigation.navigate('CreateClient');
-  }, [navigation]);
-
   const handleFetchClients = useCallback(async () => {
     const [clientsResponse, debtsResponse] = await Promise.all([
       api.get(`/Cliente/GetOData`),
@@ -97,29 +109,36 @@ export function Clients() {
     const clientsData: ClientDTO[] = clientsResponse.data.d.results;
     const debtsData: DebtDTO[] = debtsResponse.data.d.results;
 
-    const clientsWithDebts = clientsData.map(client => {
-      const clientDebts = debtsData.filter(
-        debt => debt.cliente.id === client.id,
-      );
-      return {
-        id: client.id,
-        nome: client.nome,
-        email: client.email,
-        cpf: client.cpf,
-        idControle: client.idControle,
-        version: client.version,
-        retorno: client.retorno,
-        debts: clientDebts.map(debt => ({
-          id: debt.id,
-          valor: debt.valor,
-          dataPagamento: debt.dataPagamento,
-          descricao: debt.descricao,
-          idControle: debt.idControle,
-          version: debt.version,
-          retorno: debt.retorno,
-        })),
-      };
-    });
+    const clientsWithDebts = clientsData
+      .map(client => {
+        const debts = debtsData
+          .filter(debt => debt.cliente.id === client.id)
+          .map(debt => ({
+            id: debt.id,
+            valor: debt.valor,
+            dataPagamento: debt.dataPagamento,
+            descricao: debt.descricao,
+            idControle: debt.idControle,
+            version: debt.version,
+            retorno: debt.retorno,
+          }));
+
+        return {
+          id: client.id,
+          nome: client.nome,
+          email: client.email,
+          cpf: client.cpf,
+          dataNascimento: client.dataNascimento,
+          idControle: client.idControle,
+          version: client.version,
+          retorno: client.retorno,
+          debts,
+          totalDebt: debts.reduce((prev, { valor }) => {
+            return prev + valor;
+          }, 0),
+        };
+      })
+      .sort((clientA, clientB) => clientB.totalDebt - clientA.totalDebt);
 
     setClients(clientsWithDebts);
   }, []);
@@ -163,7 +182,10 @@ export function Clients() {
         scrollEventThrottle={16}
         ItemSeparatorComponent={S.Separator}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: RFValue(32) }}
+        contentContainerStyle={{
+          padding: RFValue(16),
+          paddingBottom: RFValue(32),
+        }}
         refreshControl={
           <RefreshControl
             refreshing={isFetching}

@@ -140,8 +140,10 @@ export function CreateClient() {
               </Label>
             )}
           />
-          <Label title="Dívidas" />
         </S.Form>
+        <S.LabelWrapper>
+          <Label title="Dívidas" />
+        </S.LabelWrapper>
         <S.EmptyDebtWrapper>
           <S.EmptyDebtText>Cliente não possui dívidas.</S.EmptyDebtText>
         </S.EmptyDebtWrapper>
