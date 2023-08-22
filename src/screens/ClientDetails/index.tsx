@@ -154,7 +154,9 @@ export function ClientDetails() {
     // navigation.navigate('CreateDebt');
   }, [navigation]);
 
-  const handleOpenAllDebts = useCallback(() => {}, []);
+  const handleOpenAllDebts = useCallback(() => {
+    navigation.navigate('AllDebts', { clientId: id });
+  }, [id, navigation]);
 
   const handleFetchClient = useCallback(async () => {
     const [clientsResponse, debtsResponse] = await Promise.all([

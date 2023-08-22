@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Clients } from '@screens/Clients';
 import { CreateClient } from '@screens/CreateClient';
 import { ClientDetails } from '@screens/ClientDetails';
+import { AllDebts } from '@screens/AllDebts';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export function ClientsStackRoutes() {
       <Screen name="Clients" component={Clients} />
       <Screen name="CreateClient" component={CreateClient} />
       <Screen name="ClientDetails" component={ClientDetails} />
+      <Screen name="AllDebts" component={AllDebts} />
     </Navigator>
   );
 }
