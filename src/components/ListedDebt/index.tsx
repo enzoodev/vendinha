@@ -5,7 +5,7 @@ import { formatToBRL } from 'brazilian-values';
 
 import { Debt } from '@dtos/debt';
 
-import CheckIcon from '@assets/images/Situação Aviso.svg';
+import CheckIcon from '@assets/images/SituacaoAviso.svg';
 import { Button } from '@components/Button';
 
 import * as S from './styles';
