@@ -1,4 +1,4 @@
-# vendinha
+# vendinha - Teste técnico vaga dev mobile pleno
 
 ## Passo a passo de instalação:
 
