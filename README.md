@@ -1,17 +1,17 @@
-# vendinha - Teste técnico vaga dev mobile pleno
+# vendinha - Technical Test for Mid-Level Mobile Developer Position
 
-## Passo a passo de instalação:
+## Installation Steps:
 
-1. Abra o seu terminal e clone o projeto com:`git clone https://github.com/enzoodev/vendinha.git`
-2. Abra o projeto no seu editor de código e instale as dependências com:`yarn ou npm install`
-3. Rode `npx expo start` para iniciar o projeto
-4. Em seguida faça o download do app Expo Go para Android ou iOS caso deseje emular o app em seu dispositivo físico ou use um emulador de Android/simulador de iOS para utilizar o app.
+1. Open your terminal and clone the project with: `git clone https://github.com/enzoodev/vendinha.git`
+2. Open the project in your code editor and install the dependencies with: `yarn` or `npm install`
+3. Run `npx expo start` to start the project
+4. Then download the Expo Go app for Android or iOS if you want to emulate the app on your physical device, or use an Android emulator/iOS simulator to use the app.
 
-### Libs utilizadas:
+### Libraries used:
 
-1. react-navigation para implementar a nagevação bottom-tabs/stack entre as telas.
-2. axios para fazer a integração com a api.
-3. react-hook-form para validação dos formulários de forma simples e performática.
-4. styled-components para a construção de componentes estilizados.
-5. brazilian-values para lidar com a formatação e validação de datas, valores e cpf.
-6. eslint e prettier para escrever um código com maior qualidade e organização.
+1. react-navigation to implement bottom-tabs/stack navigation between screens.
+2. axios for API integration.
+3. react-hook-form for simple and performant form validation.
+4. styled-components for building styled components.
+5. brazilian-values to handle formatting and validation of dates, values, and CPF.
+6. eslint and prettier to write higher quality and more organized code.
